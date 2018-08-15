@@ -30,7 +30,7 @@ knitr::opts_chunk$set(
 
 ## Решение 
 
-См. [полный текст исследования](https://github.com/flyeye/BugsStatistic/blob/master/bugs.html)
+См. [полный текст исследования](http://htmlpreview.github.io/?https://github.com/flyeye/BugsStatistic/blob/master/bugs.html)
 
 ## Ответы на вопросы
 
