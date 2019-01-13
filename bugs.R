@@ -267,6 +267,7 @@ chi_o <- c(sum((z<=0.25)),
 sum(((chi_o[1:8] - chi_c[1:8]*length(z))^2)/(chi_c[1:8]*length(z)))
 chisq.test(x = chi_o, p = chi_c)
 
+
 chi_o <- c(sum(bugs$hours==0.1), 
              sum(bugs$hours==0.5), 
              sum(bugs$hours==1), 
@@ -285,6 +286,36 @@ sum(((chi_o[2:6] - chi_c[2:6]*length(z))^2)/(chi_c[2:6]*length(z)))
 chisq.test(x = chi_o, p = chi_c)
 
 # chisq.test(x = chi_o[2:6], y = chi_c[2:6])
+
+# ===============
+
+# 0, 0.4, 0.6, 1.4, 2.7, 5.2,
+
+library(moments)
+
+sh1 <- 1.7
+sh2 <- 16.7
+kn <- 53
+
+z <- rbeta(n = 1000, shape1 = sh1, shape2 = sh2)*kn
+ggplot() + geom_histogram(aes(x = z), fill = "gray70", colour = "gray10")+
+  theme_bw()
+mean(z)
+sd(z)
+skewness(bugs$hours)
+kurtosis(bugs$hours)
+
+chi_c <- c(pbeta(0.1/kn, shape1 = sh1, shape2 = sh2), 
+           pbeta(0.25/kn, shape1 = sh1, shape2 = sh2) - pbeta(0.1/kn, shape1 = sh1, shape2 = sh2),
+           pbeta(0.75/kn, shape1 = sh1, shape2 = sh2) - pbeta(0.25/kn, shape1 = sh1, shape2 = sh2),
+           pbeta(1.5/kn, shape1 = sh1, shape2 = sh2) - pbeta(0.75/kn, shape1 = sh1, shape2 = sh2),
+           pbeta(3/kn, shape1 = sh1, shape2 = sh2) - pbeta(1.5/kn, shape1 = sh1, shape2 = sh2),
+           pbeta(6/kn, shape1 = sh1, shape2 = sh2) - pbeta(3/kn, shape1 = sh1, shape2 = sh2),
+           pbeta(12/kn, shape1 = sh1, shape2 = sh2) - pbeta(6/kn, shape1 = sh1, shape2 = sh2),
+           pbeta(20/kn, shape1 = sh1, shape2 = sh2) - pbeta(12/kn, shape1 = sh1, shape2 = sh2),
+           1 - pbeta(20/kn, shape1 = sh1, shape2 = sh2))
+
+chisq.test(x = chi_o, p = chi_c)
 
 # ===============
 
