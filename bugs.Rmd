@@ -1,8 +1,11 @@
 ---
 title: "Bugs statistic"
 author: "Alexey Popov"
-date: '18 июня 2018 г '
-output: html_document
+date: '18 июля 2018 года.'
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
